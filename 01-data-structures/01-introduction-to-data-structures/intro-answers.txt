@@ -1,0 +1,23 @@
+1. Line
+  a. How does your data structure allow developers to access and manipulate the data?
+    It stores data in an array, and uses helper methods to access and manipulate the data stored in the array.
+
+  b. If a developer wanted to find a specific element in your data structure, how would you search for it?
+    Since this is an unsorted list, linear search is used to iterate through each item in the array until a
+    specific element is found.  If none is found, nil is returned.
+
+  c. What other real-world data can each structure represent?
+    This could be used for products on a store shelf, such as milk.  New items (freshest milk) is added to the back
+    so the oldest milk stays in front.  But any milk carton could be removed or added, and the remaining cartons would move up.
+
+2. Screen
+  a. How does your data structure allow developers to access and manipulate the data?
+    It stores data in a multidimensional array (i.e. matrix) that is initialized with values of nil at each location.  To access and manipulate
+    the data, helper methods are defined to change or return info about the matrix.
+
+  b. If a developer wanted to find a specific element in your data structure, how would you search for it?
+    Just the x and y coordinates are needed to find the pixel at a given location.
+
+  c. What other real-world data can each structure represent?
+    This could be used for 2D maps to store additional information about a given lat/long location, such as elevation,
+    temperature, etc.
