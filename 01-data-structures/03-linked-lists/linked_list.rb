@@ -1,4 +1,5 @@
 require_relative 'node'
+require 'benchmark'
 
 class LinkedList
   attr_accessor :head
@@ -83,4 +84,37 @@ class LinkedList
     temp = @head
     @head = @head.next
   end
+end
+
+n = 10000
+llist = LinkedList.new
+b = Array.new
+
+Benchmark.bm do |x|
+  x.report {
+    for i in 1..n
+      b << "a"
+    end
+  }
+  x.report {
+    for i in 1..n
+      tempNode = Node.new("a")
+      llist.add_to_tail(tempNode)
+    end
+  }
+  x.report { temp = b[5000] }
+  x.report {
+    temp = llist.head
+    for i in 1..5000
+      temp = temp.next
+    end
+  }
+  x.report { b.delete_at(5000) }
+  x.report {
+    temp = llist.head
+    for i in 1..5000
+      temp = temp.next
+    end
+    llist.delete(temp)
+  }
 end
