@@ -26,11 +26,11 @@ class LinkedList
     if @tail == nil
       return nil
     elsif @head == @tail
-      @head == nil
-      @tail == nil
+      @head = nil
+      @tail = nil
     else
       temp = @head
-      while temp.next.next != nil
+      while temp.next != @tail
         temp = temp.next
       end
       @tail = temp
@@ -40,7 +40,7 @@ class LinkedList
   # This method prints out a representation of the list.
   def print
     temp = @head
-    while temp.next != nil
+    while temp != nil
       puts temp.data
       temp = temp.next
     end
@@ -48,7 +48,22 @@ class LinkedList
 
   # This method removes `node` from the list and must keep the rest of the list intact.
   def delete(node)
-
+    if @tail == nil
+      return nil
+    elsif @head == @tail
+      @head = nil
+      @tail = nil
+    elsif node == @head
+      remove_front
+    elsif node == @tail
+      remove_tail
+    else
+      temp = @head
+      while temp.next != node
+        temp = temp.next
+      end
+      temp.next = node.next
+    end
   end
 
   # This method adds `node` to the front of the list and must set the list's head to `node`.
