@@ -13,35 +13,46 @@ class HashClass
 
     # Insertion into the array
 
-    # Checks if there is already an entry at the calculated index
+    # Checks if there is already a Hash object at the calculated index
     # If the array is not empty at that index and the value is different
     # than value to be inserted, a collision has occured and the array must be resized
-    if @items[newIndex][1] != nil && @items[newIndex][1] != value
+    if @items[newIndex] != nil && @items[newIndex].value != value
       resize
-
+      # Re-calculate the index for the item to be inserted based upon the new array size
+      newIndex = index(key, @items.length)
     # If the array is not empty and the values are the same, or the array is empty
     # at that location, insert the value into the array
-    else
-      @items[newIndex][0] = key
-      @items[newIndex][1] = value
+    # else
+    end
+    # Insert the Hash object into the array
+    @items[newIndex] = newItem
+    #is this right?  what happens if there is a collision even after the resize?
+    puts "Array size = " + size.to_s
+    @items.each do |i|
+      if i != nil
+        puts i.key
+        puts i.value
+      end
     end
   end
 
   def [](key)
-
+    tempIndex = index(key, @items.length)
+    return @items[tempIndex].value
   end
 
   def resize
-    newItems = Array.new(@items.length*2)
+    tempItems = Array.new(2 * @items.length)
     # @items.length.times do
     #   @items.push(nil)
     # end
     for i in @items
-      tempIndex = index(i[0], newItems.length)
-      newItems[tempIndex][0] = i[0]
-      newItems[tempIndex][1] = i[1]
+      if i != nil
+        tempIndex = index(i.key, tempItems.length)
+        tempItems[tempIndex] = i
+      end
     end
-    return newItems
+    @items = tempItems
   end
 
   # Returns a unique, deterministically reproducible index into an array
