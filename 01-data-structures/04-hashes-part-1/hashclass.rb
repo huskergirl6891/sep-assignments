@@ -43,9 +43,6 @@ class HashClass
 
   def resize
     tempItems = Array.new(2 * @items.length)
-    # @items.length.times do
-    #   @items.push(nil)
-    # end
     for i in @items
       if i != nil
         tempIndex = index(i.key, tempItems.length)
@@ -60,6 +57,10 @@ class HashClass
   # a starting point.
   def index(key, size)
     indexAscii = key.sum
+    # sum = 0
+    # for i in key
+    #   sum += i.to_i
+    # end
     indexValue = indexAscii % size
   end
 
