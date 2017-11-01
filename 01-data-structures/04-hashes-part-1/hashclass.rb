@@ -17,23 +17,32 @@ class HashClass
     # If the array is not empty at that index and the value is different
     # than value to be inserted, a collision has occured and the array must be resized
     if @items[newIndex] != nil && @items[newIndex].value != value
-      resize
-      # Re-calculate the index for the item to be inserted based upon the new array size
-      newIndex = index(key, @items.length)
+      # Keep resizing until a collision does not occur
+      while (@items[newIndex] != nil && @items[newIndex].value != value)
+        resize
+        # Re-calculate the index for the item to be inserted based upon the new array size
+        newIndex = index(key, @items.length)
+        if @items[newIndex] != nil && @items[newIndex].key == key
+          break
+        end
+      end
+    end
+
     # If the array is not empty and the values are the same, or the array is empty
     # at that location, insert the value into the array
-    # else
-    end
     # Insert the Hash object into the array
     @items[newIndex] = newItem
     #is this right?  what happens if there is a collision even after the resize?
     puts "Array size = " + size.to_s
-    @items.each do |i|
-      if i != nil
-        puts i.key
-        puts i.value
-      end
-    end
+    # @items.each do |i|
+    #   if i != nil
+        # puts i.key
+        # puts i.value
+        print @items
+        puts ""
+        puts ""
+      # end
+    # end
   end
 
   def [](key)
