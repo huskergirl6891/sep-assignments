@@ -1,0 +1,14 @@
+Describe three collision resolution strategies not mentioned here.
+1.  Robin Hood hashing - a variation on double hashing - a new key can replace an existing key if the probe count is
+larger than the current key.  This helps reduce worst case search times.
+(https://en.wikipedia.org/wiki/Hash_table#Collision_resolution)
+2.  Random hashing - instead of increasing to the next position by one as in linear probing, random hashing uses a
+pseudo random generator seeded by the key.  This can help avoid clustering created by linear probing.
+(http://cseweb.ucsd.edu/~kube/cls/100/Lectures/lec16/lec16-24.html)
+3.  2-choice hashing - uses two different hash functions to compute two locations.  The object is inserted at the
+location with fewer objects.
+(https://en.wikipedia.org/wiki/Hash_table#Collision_resolution)
+
+Create your own collision resolution strategy and describe how it works.
+A possible variation on Separate Chaining would be to store nodes in arrays instead of linked lists inside of the larger
+main hash array.  The smaller arrays would be increased in size as needed when a collision occurred.
