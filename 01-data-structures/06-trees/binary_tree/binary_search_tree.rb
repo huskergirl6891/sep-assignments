@@ -48,25 +48,40 @@ class BinarySearchTree
   # Recursive Depth First Search
   def find(root, data)
     temp = root
+
     # no data should return nil
     if data == nil
       return nil
+
     # base case where current node matches the data to be found
     elsif temp.title == data
       return temp
+
+    # found a leaf node so can't go any further
+    # elsif temp.left == nil && temp.right == nil
+    #   puts "Found leaf node"
+
     # if no match found, keep traversing tree
     else
-      # always look for a path to the right first
-      if temp.right != nil
+      # if both children exist, need to check both sides
+      if temp.right != nil && temp.left != nil
+        temp1 = temp.right
+        puts "temp1 = " + temp1.title if temp != nil
+        find(temp1, data)
+        temp2 = temp.left
+        puts "temp2 = " + temp2.title if temp != nil
+        find(temp2, data)
+      elsif temp.right != nil
         temp = temp.right
+        puts "temp right = " + temp.title if temp != nil
         find(temp, data)
       # if no path to the right exists, go to the left
       elsif temp.left != nil
         temp = temp.left
+        puts "temp left = " + temp.title if temp != nil
         find(temp, data)
-      # if no path to right or left exists
-      else
-        return nil
+      # else
+      #   puts "Found leaf node"
       end
     end
   end
@@ -75,34 +90,36 @@ class BinarySearchTree
     return nil if data == nil
     # store node to be deleted in temp variable
     tempNode = find(root, data)
-    # puts ""
-    # puts "tempNodeFound = " + tempNode.title
-    # puts "root = " + root.title
-    # puts "root left = " + root.left.title if root.left != nil
 
     # if no children, just delete the node
     if tempNode.left == nil && tempNode.right == nil
       tempNode.rating = nil
       tempNode.title = nil
       tempNode = nil
-      # puts "tempNode after delete = "
-      # puts tempNode
-      # puts "root = " + root.title
-      # puts "root left = " + root.left.title if root.left != nil
 
     # if no left child, replace node to be deleted with right child
     elsif tempNode.left == nil
-      tempNode = tempNode.right
+      tempNode.title = tempNode.right.title
+      tempNode.rating = tempNode.right.rating
+      tempNode.right.title = nil
+      tempNode.right.rating = nil
+      tempNode.right = nil
 
     # if no right child, replace node to be deleted with left child
     elsif tempNode.right == nil
-      tempNode = tempNode.left
+      tempNode.title = tempNode.left.title
+      tempNode.rating = tempNode.left.rating
+      tempNode.left.title = nil
+      tempNode.left.rating = nil
+      tempNode.left = nil
 
-    # both left and right children exist
+    # both left and right children exist, still replace with left child
     else
-      minNode = findMin(tempNode.left, tempNode.right)
-      tempNode = minNode
-      minNode = nil
+      tempNode.title = tempNode.left.title
+      tempNode.rating = tempNode.left.rating
+      tempNode.left.title = nil
+      tempNode.left.rating = nil
+      tempNode.left = nil
     end
 
   end
@@ -134,11 +151,8 @@ class BinarySearchTree
     end
   end
 
-  def findMin(node1, node2)
-    if node1.rating < node2.rating
-      return node1
-    else
-      return node2
-    end
+  # returns the child node of "node" with the smallest rating
+  def findMin(node)
+    temp = node
   end
 end
