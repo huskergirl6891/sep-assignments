@@ -1,13 +1,22 @@
-1.  Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
-
-2.  Insert all numbers from 1 to 100000 into both Trees, then use Benchmark to compare performance:
+Insert all numbers from 1 to 100000 into both Trees, then use Benchmark to compare performance:
 
 --How much time does an average insertion consume in the Binary Search Tree compared to the Heap?
+BST:   6.09
+Heap:  2.55
 
 --How much time does finding 50000 in the Binary Search Tree consume compared to the Heap?
+BST:  0.000758
+Heap: 0.001520
 
 --How much time does the average deletion consume in a Binary Search Tree compared to the Heap?
+BST:  0.000904
+Heap: 0.001483
 
 --When would you use a Binary Search Tree and why?
+Searching on average is better with BST at O(log(n)).  Besides finding the max or min, the heap search
+worst case is O(n).
 
 --When would you use an Heap and why?
+A heap would be best if only the largest (or smallest) element needs to be tracked.  In this case,
+the find method beats BST:  O(1) vs O(log(n)).  It also performs better on average for insertion:
+O(1) vs O(log(n)).

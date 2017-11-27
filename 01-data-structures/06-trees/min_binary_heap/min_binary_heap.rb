@@ -171,7 +171,7 @@ class MinBinaryHeap
   end
 end
 
-n = 100000
+n = 10000
 root = Node.new("title1", 1)
 minBinaryHeap = MinBinaryHeap.new(root)
 
@@ -182,6 +182,6 @@ Benchmark.bm do |x|
       minBinaryHeap.insert(root, temp)
     end
   }
-  x.report("MBH_find:") { minBinaryHeap.find(root, "title50000") }
+  x.report("MBH_find:") { minBinaryHeap.find(root, "title5000") }
   x.report("MBH_delete:") { minBinaryHeap.delete(root, "title5000") }
 end

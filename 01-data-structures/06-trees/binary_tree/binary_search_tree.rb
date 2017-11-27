@@ -142,17 +142,17 @@ class BinarySearchTree
   end
 end
 
-n = 100000
+n = 10000
 root = Node.new("title1", 1)
 binSearchTree = BinarySearchTree.new(root)
 
 Benchmark.bm do |x|
-  x.report("BST_insert:") {  
+  x.report("BST_insert:") {
     for i in 2..n
       temp = Node.new("title" + i.to_s, i)
       binSearchTree.insert(root, temp)
     end
   }
-  x.report("BST_find:") { binSearchTree.find(root, "title50000") }
+  x.report("BST_find:") { binSearchTree.find(root, "title5000") }
   x.report("BST_delete:") { binSearchTree.delete(root, "title5000") }
 end
