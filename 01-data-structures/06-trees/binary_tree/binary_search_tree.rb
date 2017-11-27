@@ -1,4 +1,5 @@
 require_relative 'node'
+require 'benchmark'
 
 class BinarySearchTree
 
@@ -53,35 +54,22 @@ class BinarySearchTree
     if data == nil
       return nil
 
+    # checks if current node is nil
+    elsif temp == nil
+      return nil
+
     # base case where current node matches the data to be found
     elsif temp.title == data
       return temp
 
-    # found a leaf node so can't go any further
-    # elsif temp.left == nil && temp.right == nil
-    #   puts "Found leaf node"
-
     # if no match found, keep traversing tree
     else
       # if both children exist, need to check both sides
-      if temp.right != nil && temp.left != nil
-        temp1 = temp.right
-        puts "temp1 = " + temp1.title if temp != nil
-        find(temp1, data)
-        temp2 = temp.left
-        puts "temp2 = " + temp2.title if temp != nil
-        find(temp2, data)
-      elsif temp.right != nil
-        temp = temp.right
-        puts "temp right = " + temp.title if temp != nil
-        find(temp, data)
-      # if no path to the right exists, go to the left
-      elsif temp.left != nil
-        temp = temp.left
-        puts "temp left = " + temp.title if temp != nil
-        find(temp, data)
-      # else
-      #   puts "Found leaf node"
+      curr = find(temp.right, data)
+      if !curr.nil?
+        return curr
+      else
+        find(temp.left, data)
       end
     end
   end
@@ -99,29 +87,22 @@ class BinarySearchTree
 
     # if no left child, replace node to be deleted with right child
     elsif tempNode.left == nil
-      tempNode.title = tempNode.right.title
-      tempNode.rating = tempNode.right.rating
-      tempNode.right.title = nil
-      tempNode.right.rating = nil
-      tempNode.right = nil
+      maxNode = findMax(tempNode.right)
+      tempNode.title = maxNode.title
+      tempNode.rating = maxNode.rating
+      maxNode.title = nil
+      maxNode.rating = nil
+      maxNode = nil
 
     # if no right child, replace node to be deleted with left child
-    elsif tempNode.right == nil
-      tempNode.title = tempNode.left.title
-      tempNode.rating = tempNode.left.rating
-      tempNode.left.title = nil
-      tempNode.left.rating = nil
-      tempNode.left = nil
-
-    # both left and right children exist, still replace with left child
     else
-      tempNode.title = tempNode.left.title
-      tempNode.rating = tempNode.left.rating
-      tempNode.left.title = nil
-      tempNode.left.rating = nil
-      tempNode.left = nil
+      maxNode = findMax(tempNode.left)
+      tempNode.title = maxNode.title
+      tempNode.rating = maxNode.rating
+      maxNode.title = nil
+      maxNode.rating = nil
+      maxNode = nil
     end
-
   end
 
   # Recursive Breadth First Search
@@ -134,7 +115,7 @@ class BinarySearchTree
     # print last level of array and check if children exist
     childrenExist = false
     for i in children do
-      puts i.title + ": " + i.rating.to_s
+      puts i.title + ": " + i.rating.to_s if i.title != nil
       if i.left != nil || i.right != nil
         childrenExist = true
       end
@@ -152,7 +133,26 @@ class BinarySearchTree
   end
 
   # returns the child node of "node" with the smallest rating
-  def findMin(node)
+  def findMax(node)
     temp = node
+    while temp.right != nil
+      temp = temp.right
+    end
+    return temp
   end
+end
+
+n = 100000
+root = Node.new("title1", 1)
+binSearchTree = BinarySearchTree.new(root)
+
+Benchmark.bm do |x|
+  x.report("BST_insert:") {  
+    for i in 2..n
+      temp = Node.new("title" + i.to_s, i)
+      binSearchTree.insert(root, temp)
+    end
+  }
+  x.report("BST_find:") { binSearchTree.find(root, "title50000") }
+  x.report("BST_delete:") { binSearchTree.delete(root, "title5000") }
 end

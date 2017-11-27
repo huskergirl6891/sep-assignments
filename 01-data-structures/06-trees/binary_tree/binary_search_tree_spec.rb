@@ -142,7 +142,7 @@ RSpec.describe BinarySearchTree, type: Class do
       expect(tree.find(root, mad_max_2.title)).to be_nil
     end
 
-    it "properly deletes a non-leaf node and updates tree correctly" do
+    it "properly deletes a non-leaf node with two children and updates tree correctly" do
       tree.insert(root, hope)
       tree.insert(root, empire)
       tree.insert(root, jedi)
@@ -152,9 +152,23 @@ RSpec.describe BinarySearchTree, type: Class do
       tree.insert(root, shawshank)
       tree.insert(root, martian)
       tree.insert(root, rainbow)
-      tree.printf
       expect(tree.find(root, empire.title).title).to eq "Star Wars: The Empire Strikes Back"
       expect(tree.find(root, rainbow.title).title).to eq "Rainbow"
+      tree.delete(root, "Star Wars: A New Hope")
+      expect(tree.find(root, "Star Wars: A New Hope")).to be_nil
+    end
+
+    it "properly deletes a non-leaf node with no left child and updates tree correctly" do
+      tree.insert(root, hope)
+      tree.insert(root, empire)
+      tree.insert(root, jedi)
+      tree.insert(root, pacific_rim)
+      tree.insert(root, inception)
+      tree.insert(root, district)
+      tree.insert(root, shawshank)
+      tree.insert(root, martian)
+      tree.delete(root, "District 9")
+      expect(tree.find(root, "District 9")).to be_nil
     end
   end
 
