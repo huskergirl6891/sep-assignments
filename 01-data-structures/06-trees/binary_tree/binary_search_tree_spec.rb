@@ -17,6 +17,7 @@ RSpec.describe BinarySearchTree, type: Class do
   let (:hope) { Node.new("Star Wars: A New Hope", 93) }
   let (:empire) { Node.new("Star Wars: The Empire Strikes Back", 94) }
   let (:mad_max_2) { Node.new("Mad Max 2: The Road Warrior", 98) }
+  let (:rainbow) { Node.new("Rainbow", 89) }
 
   describe "#insert(data)" do
     it "properly inserts a new node as a left child" do
@@ -102,16 +103,16 @@ RSpec.describe BinarySearchTree, type: Class do
     end
 
     it "properly deletes a left node" do
-      tree.insert(root, hope)
-      tree.delete(root, hope.title)
-      expect(tree.find(root, hope.title)).to be_nil
+      tree.insert(root, braveheart)
+      tree.delete(root, braveheart.title)
+      expect(tree.find(root, braveheart.title)).to be_nil
     end
 
     it "properly deletes a left-left node" do
       tree.insert(root, braveheart)
       tree.insert(root, pacific_rim)
-      tree.delete(root, pacific_rim.title)
-      expect(tree.find(root, pacific_rim.title)).to be_nil
+      tree.delete(root, braveheart.title)
+      expect(tree.find(root, "Braveheart")).to be_nil
     end
 
     it "properly deletes a left-right node" do
@@ -139,6 +140,35 @@ RSpec.describe BinarySearchTree, type: Class do
       tree.insert(root, mad_max_2)
       tree.delete(root, mad_max_2.title)
       expect(tree.find(root, mad_max_2.title)).to be_nil
+    end
+
+    it "properly deletes a non-leaf node with two children and updates tree correctly" do
+      tree.insert(root, hope)
+      tree.insert(root, empire)
+      tree.insert(root, jedi)
+      tree.insert(root, pacific_rim)
+      tree.insert(root, inception)
+      tree.insert(root, district)
+      tree.insert(root, shawshank)
+      tree.insert(root, martian)
+      tree.insert(root, rainbow)
+      expect(tree.find(root, empire.title).title).to eq "Star Wars: The Empire Strikes Back"
+      expect(tree.find(root, rainbow.title).title).to eq "Rainbow"
+      tree.delete(root, "Star Wars: A New Hope")
+      expect(tree.find(root, "Star Wars: A New Hope")).to be_nil
+    end
+
+    it "properly deletes a non-leaf node with no left child and updates tree correctly" do
+      tree.insert(root, hope)
+      tree.insert(root, empire)
+      tree.insert(root, jedi)
+      tree.insert(root, pacific_rim)
+      tree.insert(root, inception)
+      tree.insert(root, district)
+      tree.insert(root, shawshank)
+      tree.insert(root, martian)
+      tree.delete(root, "District 9")
+      expect(tree.find(root, "District 9")).to be_nil
     end
   end
 
