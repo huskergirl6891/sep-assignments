@@ -1,0 +1,26 @@
+1.  Everyday algorithms
+a. Making coffee
+--Get cup out of cupboard
+--Fill up water container until it reaches max fill line
+--Turn on Keurig machine
+--Wait for buttons to light up indicating Keurig machine is ready
+--Insert coffee k-cup into Keurig machine
+--Put cup under spout
+--Press start button
+
+b. Putting kids to bed
+--Give kids a bath
+--Have kids put on pajamas
+--Get bedtime snack
+--Read stories
+--Turn on music
+--Turn off lights
+--Say prayers
+
+c. Driving to work
+--Drive out of apartment complex
+--If time is before 8 am, turn right towards A St.
+--Otherwise turn left towards B St.
+--Turn right onto 10th St.
+--Turn left onto Sample St.
+--Turn right into office parking lot.
