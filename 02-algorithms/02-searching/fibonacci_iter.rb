@@ -1,4 +1,4 @@
-def fib(n)
+def fib_iter(n)
   fib_0 = 0
   fib_1 = 1
   for i in 0..(n-1) do
@@ -9,13 +9,5 @@ def fib(n)
   return fib_0
 end
 
-puts fib(0)
-puts fib(1)
-puts fib(2)
-puts fib(3)
-puts fib(4)
-puts fib(5)
-puts fib(6)
-puts fib(7)
-puts fib(8)
-puts fib(9)
+puts "Iterative"
+puts fib_iter(20)
