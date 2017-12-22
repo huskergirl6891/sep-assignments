@@ -1,0 +1,30 @@
+x1. Describe an analogy for relating an algorithm that has efficiency O(1) and another algorithm that has O(2^n).
+An algorithm that has O(1) is an airplane and an algorithm that has O(2^n) is a covered wagon.
+
+x2. In plain English, what is the best case scenario for binary search?  The best case is constant time.  In this case,
+the object to be found is exactly in the middle of the array, so it will be found on the first iteration.
+
+x3. In plain English, what is the worst-case scenario for binary search?  The worst case is that the object to be
+found is not in the array.  The search function will have to iterate through until the end, and each time, the size
+of the array to search is divided in half.  This means the search will take log(n) times, where n is the size of the
+initial array.
+
+x4. In plain English, what is the bounded-case scenario for binary search?  The bounded case is log(n), since it cannot
+perform any slower than the worst case scenario or any faster than the best case scenario.
+
+x5. Create a graph using the data below. Here's a CSV with the values you'll need.
+
+x6. What is the limit of the function above as n approaches infinity?  The limit of f(x) is infinity
+
+x7. What is the Big-O of an algorithm that has the data points above?  O(2^n) or exponential.
+
+x8. Write a Ruby method that takes a number n. This method must print the worst-case number of iterations
+for linear search to find an item in collections of size one to n. Use it to generate a table of worst-case iterations of collections up to size 10.
+
+x9. Create a graph from the output using Google Sheets or other graphing software. Analyze the graph and denote its Big-O somewhere on the graph.
+
+x10. What is the Big-O of binary search (worst)? O(log(n))
+
+x11. What is the Big-Ω of binary search (best)? O(1)
+
+x12. What is the Big-Ө of binary search (bounded)? O(log(n))
