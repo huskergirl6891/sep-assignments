@@ -1,0 +1,27 @@
+1. O(1)
+Reason: The statement prints just once using the function argument.
+
+2. O(n)
+Reason:  If the largest item in the collection is at the very end, the function
+will iterate through the entire length of the array, or n times.
+
+3.  O(n^2)
+Reason:  If the largest item is at the very end of the 2D array, it will need
+to iterate to the end of each subarray (column of the 2D array) for every item
+in the main array (row of the 2D array).
+
+4.  O(2^n)
+Reason:  This is the recursive Fibonacci algorithm, so the total time is the sum
+of iterations to solve numbers(n-1) + numbers(n-2).  This video was a good resource for
+this problem:
+https://www.youtube.com/watch?v=pqivnzmSbq4
+
+5.  O(n)
+Reason:  The main part of this algorithm is the while loop, which will always have n-1
+iterations, which is very close to n.  The steps inside the loop take constant time.
+
+6.  O(n^2)
+Reason:  This is the quicksort algorithm.  In the worst case, the pivot is
+unbalanced, and all elements must be compared to the pivot.  This was a good
+explanation of the time complexity:
+https://www.khanacademy.org/computing/computer-science/algorithms/quick-sort/a/analysis-of-quicksort
