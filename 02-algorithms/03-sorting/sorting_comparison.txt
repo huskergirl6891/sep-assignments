@@ -1,0 +1,13 @@
+Benchmark results =
+
+              user       system     total    real
+Quick Sort:   0.000000   0.000000   0.000000 (  0.000034)
+Heap Sort:    0.000000   0.000000   0.000000 (  0.000047)
+Bucket Sort:  0.000000   0.000000   0.000000 (  0.000055)
+
+Best & average complexities:
+Quick & Heap - O(nlogn)
+Bucket - O(n)
+
+Quick and heap are faster than bucket due to their best and average speed complexity being better than bucket sort.
+Since the data was not uniformly distributed, bucket sort was also not very efficient.
