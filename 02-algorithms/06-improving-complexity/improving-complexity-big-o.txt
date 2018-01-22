@@ -1,0 +1,9 @@
+Big O of each implementation:
+
+poorly_written_ruby: O(n^2)
+
+version_one: O(n^2)
+
+version_two: O(n log n)
+
+version_three:  I made time and space improvements in version two by removing the extra array "sorted_array" while implementing merge sort.
